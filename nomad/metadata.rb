@@ -1,0 +1,3 @@
+name 'nomad'
+
+depends 'ark'
