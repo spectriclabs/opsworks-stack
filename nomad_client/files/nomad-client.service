@@ -1,0 +1,16 @@
+[Unit]
+Requires=network-online.target
+After=network-online.target
+ConditionFileNotEmpty=/opt/nomad/etc/client/configuration.hcl
+
+[Service]
+User=nomad
+Group=nomad
+ExecStart=/opt/nomad/bin/nomad agent -config=/opt/nomad/etc/client/
+ExecReload=/opt/nomad/bin/nomad reload
+KillMode=process
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

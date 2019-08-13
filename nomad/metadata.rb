@@ -1,3 +1,1 @@
 name 'nomad'
-
-depends 'ark'

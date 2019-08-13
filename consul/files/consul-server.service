@@ -1,0 +1,16 @@
+[Unit]
+Requires=network-online.target
+After=network-online.target
+ConditionFileNotEmpty=/opt/consul/etc/server/configuration.hcl
+
+[Service]
+User=consul
+Group=consul
+ExecStart=/opt/consul/bin/consul agent -config-dir=/opt/consul/etc/server/
+ExecReload=/opt/consul/bin/consul reload
+KillMode=process
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
